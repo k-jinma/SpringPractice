@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layouts}">
+  >
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ログイン</title>
+  </head>
+  <body>
+    <div layout:fragment="contents">
+      <div class="container m-0">
+        <form class="form-group" th:action="@{/login}" method="post">
+          <div class="m-2">
+            <label>ユーザー名</label>
+            <input class="form-control" type="text" name="username"/>
+          </div>
+          <div class="m-2">
+            <label>パスワード</label> 
+            <input class="form-control" type="password" name="password"/>
+          </div>
+          <div class="m-2">
+            <button type="submit" class="btn btn-primary">ログイン</button>
+          </div>
+        </form>
+        
+      </div>
+    </div>
+  </body>
+</html>
