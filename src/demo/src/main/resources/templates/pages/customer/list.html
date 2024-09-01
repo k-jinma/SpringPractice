@@ -31,28 +31,28 @@
       </table>
 
       <!-- [ページネーション] -->
-      <div th:if="${users.totalPages > 1}">
+      <div th:if="${customers.totalPages > 1}">
         <ul class="pagination justify-content-center">
-          <li class="page-item" th:classappend="${users.first ? 'disabled' : ''}">
-            <a class="page-link" th:href="@{|/users?page=0&size=${users.size}|}" aria-label="First">
+          <li class="page-item" th:classappend="${customers.first ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{|/customers?page=0&size=${customers.size}|}" aria-label="First">
               <span aria-hidden="true">&laquo;&laquo;</span>
             </a>
           </li>
-          <li class="page-item" th:classappend="${users.number == 0 ? 'disabled' : ''}">
-            <a class="page-link" th:href="@{|/users?page=${users.number - 1}&size=${users.size}|}" aria-label="Previous">
+          <li class="page-item" th:classappend="${customers.number == 0 ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{|/customers?page=${customers.number - 1}&size=${customers.size}|}" aria-label="Previous">
               <span aria-hidden="true">&laquo;</span>
             </a>
           </li>
-          <li class="page-item" th:each="pageNum : ${#numbers.sequence(users.number > 3 ? users.number - 3 : 0, users.totalPages - users.number > 3 ? users.number + 3 : users.totalPages -1)}" th:classappend="${pageNum == users.number ? 'active' : ''}">
-            <a class="page-link" th:href="@{|/users?page=${pageNum}&size=${users.size}|}" th:text="${pageNum + 1}">1</a>
+          <li class="page-item" th:each="pageNum : ${#numbers.sequence(customers.number > 3 ? customers.number - 3 : 0, customers.totalPages - customers.number > 3 ? customers.number + 3 : customers.totalPages -1)}" th:classappend="${pageNum == customers.number ? 'active' : ''}">
+            <a class="page-link" th:href="@{|/customers?page=${pageNum}&size=${customers.size}|}" th:text="${pageNum + 1}">1</a>
           </li>
-          <li class="page-item" th:classappend="${users.number + 1 == users.totalPages ? 'disabled' : ''}">
-            <a class="page-link" th:href="@{|/users?page=${users.number + 1}&size=${users.size}|}" aria-label="Next">
+          <li class="page-item" th:classappend="${customers.number + 1 == customers.totalPages ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{|/customers?page=${customers.number + 1}&size=${customers.size}|}" aria-label="Next">
               <span aria-hidden="true">&raquo;</span>
             </a>
           </li>
-          <li class="page-item" th:classappend="${users.last ? 'disabled' : ''}">
-            <a class="page-link" th:href="@{|/users?page=${users.totalPages - 1}&size=${users.size}|}" aria-label="Last">
+          <li class="page-item" th:classappend="${customers.last ? 'disabled' : ''}">
+            <a class="page-link" th:href="@{|/customers?page=${customers.totalPages - 1}&size=${customers.size}|}" aria-label="Last">
               <span aria-hidden="true">&raquo;&raquo;</span>
             </a>
           </li>
