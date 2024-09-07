@@ -28,112 +28,121 @@ public class CustomersController {
 
   @RequestMapping(path = "/customers", method = RequestMethod.GET)
   public String list(
-    @PageableDefault(size = 10) Pageable pageable,
-    Model model
-  ) {
+      @PageableDefault(size = 10) Pageable pageable,
+      Model model) {
     var customers = customersService.findAll(pageable);
     model.addAttribute("customers", customers);
     return "pages/customer/list";
   }
-   //*とりあえずここまで。この先変えてないので注意。
 
-  // @RequestMapping(path = "customers/{id}")
-  // public String detail(
-  //   Model model,
-  //   @PathVariable("id") Long id,
-  //   @RequestParam(name = "page", required = false, defaultValue = "1") int page,
-  //   @RequestParam(name = "size", required = false, defaultValue = "10") int size
-  // ) {
-  //   try {
-  //     var user = userService.findOne(id);
-  //     model.addAttribute("user", user);
-  //     model.addAttribute("page", page);
-  //     model.addAttribute("size", size);
-  //   } catch (NotFoundException e) {
-  //     logger.error("NotFound", e);
-  //     return "redirect:/error/404";
-  //   }
-  //   return "pages/user/detail";
-  // }
+  // 顧客詳細画面
+  @RequestMapping(path = "customer/{id}")
+  public String detail(
+      Model model,
+      @PathVariable("id") Long id,
+      @RequestParam(name = "page", required = false, defaultValue = "1") int page,
+      @RequestParam(name = "size", required = false, defaultValue = "10") int size) {
+    // try {
+
+    try {
+      var customer = customersService.findOne(id);
+      model.addAttribute("customer", customer);
+
+    } catch (NotFoundException e) {
+      return "redirect:/error/404";
+    }
+    return "pages/customer/detail";
+
+
+    // model.addAttribute("customers", customers);
+
+    // model.addAttribute("customer", customer);
+    // model.addAttribute("page", page);
+    // model.addAttribute("size", size);
+    // } catch (NotFoundException e) {
+    // logger.error("NotFound", e);
+    // return "redirect:/error/404";
+    // }
+  }
 
   // @RequestMapping(path = "user/create", method = RequestMethod.GET)
   // public String showCreate(UserForm userForm, Model model) {
-  //   model.addAttribute("userForm", userForm);
-  //   return "pages/user/create";
+  // model.addAttribute("userForm", userForm);
+  // return "pages/user/create";
   // }
 
   // @RequestMapping(path = "user/create", method = RequestMethod.POST)
   // public String create(
-  //   @Valid @ModelAttribute UserForm userForm,
-  //   final BindingResult result
+  // @Valid @ModelAttribute UserForm userForm,
+  // final BindingResult result
   // ) {
-  //   if (result.hasErrors()) {
-  //     return "pages/user/create";
-  //   }
-  //   var user = userForm.toEntity();
-  //   user = userService.save(user);
-  //   return "redirect:/user/" + user.getId();
+  // if (result.hasErrors()) {
+  // return "pages/user/create";
+  // }
+  // var user = userForm.toEntity();
+  // user = userService.save(user);
+  // return "redirect:/user/" + user.getId();
   // }
 
   // @RequestMapping(path = "user/{userId}/edit", method = RequestMethod.GET)
   // public String showEdit(
-  //   UserEditForm userEditForm,
-  //   Model model,
-  //   @PathVariable("userId") Long userId,
-  //   @RequestParam("page") int page,
-  //   @RequestParam("size") int size
+  // UserEditForm userEditForm,
+  // Model model,
+  // @PathVariable("userId") Long userId,
+  // @RequestParam("page") int page,
+  // @RequestParam("size") int size
   // ) {
-  //   try {
-  //     var user = userService.findOne(userId);
-  //     userEditForm.setEntity(user);
-  //     model.addAttribute("userEditForm", userEditForm);
-  //     model.addAttribute("page", page);
-  //     model.addAttribute("size", size);
-  //   } catch (Exception e) {
-  //     return "redirect:/error/404";
-  //   }
-  //   return "pages/user/edit";
+  // try {
+  // var user = userService.findOne(userId);
+  // userEditForm.setEntity(user);
+  // model.addAttribute("userEditForm", userEditForm);
+  // model.addAttribute("page", page);
+  // model.addAttribute("size", size);
+  // } catch (Exception e) {
+  // return "redirect:/error/404";
+  // }
+  // return "pages/user/edit";
   // }
 
   // @RequestMapping(path = "user/{userId}/edit", method = RequestMethod.POST)
   // public String edit(
-  //   @Valid @ModelAttribute UserEditForm userEditForm,
-  //   BindingResult result,
-  //   Model model,
-  //   @PathVariable("userId") Long userId,
-  //   @RequestParam(name = "page") int page,
-  //   @RequestParam(name = "size") int size,
-  //   RedirectAttributes redirectAttributes
+  // @Valid @ModelAttribute UserEditForm userEditForm,
+  // BindingResult result,
+  // Model model,
+  // @PathVariable("userId") Long userId,
+  // @RequestParam(name = "page") int page,
+  // @RequestParam(name = "size") int size,
+  // RedirectAttributes redirectAttributes
   // ) {
-  //   try {
-  //     var user = userService.findOne(userId);
-  //     if (user.getUpdatedAt().equals(userEditForm.getUpdatedAtDateTime())) {
-  //       logger.info("楽観ロック成功");
-  //       userEditForm.updateEntityAttributes(user);
-  //       userService.save(user);
-  //     } else {
-  //       logger.info("楽観ロック失敗");
-  //       redirectAttributes.addFlashAttribute("error", "error.edit.lock_error");
-  //       return "redirect:/user/" + userId;
-  //     }
-  //   } catch (NotFoundException e) {
-  //     return "redirect:/error/404";
-  //   }
-  //   return "redirect:/user/" + userId + "?page=" + page + "&size=" + size;
+  // try {
+  // var user = userService.findOne(userId);
+  // if (user.getUpdatedAt().equals(userEditForm.getUpdatedAtDateTime())) {
+  // logger.info("楽観ロック成功");
+  // userEditForm.updateEntityAttributes(user);
+  // userService.save(user);
+  // } else {
+  // logger.info("楽観ロック失敗");
+  // redirectAttributes.addFlashAttribute("error", "error.edit.lock_error");
+  // return "redirect:/user/" + userId;
+  // }
+  // } catch (NotFoundException e) {
+  // return "redirect:/error/404";
+  // }
+  // return "redirect:/user/" + userId + "?page=" + page + "&size=" + size;
   // }
 
   // @RequestMapping(path = "/user/{id}/delete", method = RequestMethod.POST)
   // public String delete(
-  //   @PathVariable("id") Long id,
-  //   RedirectAttributes redirectAttributes
+  // @PathVariable("id") Long id,
+  // RedirectAttributes redirectAttributes
   // ) {
-  //   try {
-  //     var user = userService.findOne(id);
-  //     userService.delete(user);
-  //     redirectAttributes.addFlashAttribute("info", "info.delete.success");
-  //   } catch (NotFoundException e) {
-  //     return "redirect:/error/404";
-  //   }
-  //   return "redirect:/users";
+  // try {
+  // var user = userService.findOne(id);
+  // userService.delete(user);
+  // redirectAttributes.addFlashAttribute("info", "info.delete.success");
+  // } catch (NotFoundException e) {
+  // return "redirect:/error/404";
+  // }
+  // return "redirect:/users";
   // }
 }
