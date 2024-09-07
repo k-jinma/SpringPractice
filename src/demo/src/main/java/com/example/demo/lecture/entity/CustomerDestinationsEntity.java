@@ -1,23 +1,26 @@
 package com.example.demo.lecture.entity;
 
-// import org.glassfish.jaxb.runtime.v2.schemagen.xmlschema.List;
-import java.util.List;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "customers")
-public class CustomersEntity extends BaseEntity {
+@Table(name = "customer_destinations")
+public class CustomerDestinationsEntity extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  // ↑Integerなのか?  
+
+  // @Column(name = "customer_id")
+  // private Long customerId;
+
+
   @Column(name = "name")
   private String name;
 
@@ -29,18 +32,6 @@ public class CustomersEntity extends BaseEntity {
 
   @Column(name = "phone_number")
   private String phoneNumber;
-  // テーブルの関係性を定義する。「多」のフィールドを追加するだけで「1」のフィールド↑は特に変えない。
-  @OneToMany(mappedBy = "customer")
-  private List<CustomerDestinationsEntity> customerDestinations;
-  // ↑mappeddByの後ろに入るのは関係を持つ「多」のEntity名。sqlのカラムではない！
-
-
-  public void setCustomerDestinations(List<CustomerDestinationsEntity> customerDestinations) {
-    this.customerDestinations = customerDestinations;
-  }
-  public List<CustomerDestinationsEntity> getCustomerDestinations() {
-    return customerDestinations;
-  }
 
   public void setId(Long id) {
     this.id = id;
@@ -49,6 +40,21 @@ public class CustomersEntity extends BaseEntity {
   public Long getId() {
     return this.id;
   }
+
+      // テーブルの関係性を定義する。「多」の方。
+  @ManyToOne
+      // このエンティティのカラム名       // 結合先のエンティティのカラム名
+  @JoinColumn(name = "customer_id", referencedColumnName = "id")
+  private CustomersEntity customer;
+
+  public void setcustomer(CustomersEntity customer) {
+    this.customer = customer;
+  }
+
+  public CustomersEntity getcustomer() {
+    return customer;
+  }
+
 
   public void setName(String name) {
     this.name = name;
@@ -81,6 +87,5 @@ public class CustomersEntity extends BaseEntity {
   public String getPhoneNumber() {
     return this.phoneNumber;
   }
-
 
 }
