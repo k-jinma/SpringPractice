@@ -6,4 +6,4 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.lecture.entity.CustomersEntity;
 
 @Repository
-public interface CustomersRepository extends JpaRepository<CustomersEntity, Long> {}
+public interface CustomerDestinationsEntity extends JpaRepository<CustomersEntity, Long> {}
