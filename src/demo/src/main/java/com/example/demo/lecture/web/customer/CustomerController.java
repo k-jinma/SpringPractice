@@ -1,4 +1,4 @@
-package com.example.demo.lecture.web.customers;
+package com.example.demo.lecture.web.customer;
 
 import com.example.demo.lecture.service.CustomerService;
 import com.example.demo.lecture.web.user.UserEditForm;
@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class CustomersController {
+public class CustomerController {
 
   @Autowired
   CustomerService customerService;

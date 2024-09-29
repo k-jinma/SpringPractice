@@ -1,4 +1,4 @@
-package com.example.demo.lecture.web.customers;
+package com.example.demo.lecture.web.customer;
 
 import com.example.demo.lecture.entity.CustomerEntity;
 import com.example.demo.lecture.validator.constraints.PhoneNumber;
@@ -68,7 +68,9 @@ public class CustomerForm {
     return name;
   }
 
-  public void setLastName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
+
+
 }
