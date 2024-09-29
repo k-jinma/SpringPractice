@@ -17,6 +17,9 @@ public class UserServiceImpl implements UserService {
   UserRepository userRepository;
 
   @Override
+  // 戻り値はUserEntity型
+  // JpaRepository の save() メソッドは、引数として渡されたエンティティ
+  // を保存し、その保存されたエンティティを返す仕組みになっている
   public UserEntity save(UserEntity user) {
     return userRepository.save(user);
   }

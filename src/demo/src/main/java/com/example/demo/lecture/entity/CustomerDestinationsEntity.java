@@ -45,13 +45,13 @@ public class CustomerDestinationsEntity extends BaseEntity {
   @ManyToOne
       // このエンティティのカラム名       // 結合先のエンティティのカラム名
   @JoinColumn(name = "customer_id", referencedColumnName = "id")
-  private CustomersEntity customer;
+  private CustomerEntity customer;
 
-  public void setcustomer(CustomersEntity customer) {
+  public void setcustomer(CustomerEntity customer) {
     this.customer = customer;
   }
 
-  public CustomersEntity getcustomer() {
+  public CustomerEntity getcustomer() {
     return customer;
   }
 

@@ -12,12 +12,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "customers")
-public class CustomersEntity extends BaseEntity {
+public class CustomerEntity extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
-  // ↑Integerなのか?  
+  
   @Column(name = "name")
   private String name;
 
