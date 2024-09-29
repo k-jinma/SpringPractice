@@ -54,13 +54,13 @@ public class UserController {
     }
     return "pages/user/detail";
   }
-
+  // ユーザー登録 内容入力
   @RequestMapping(path = "user/create", method = RequestMethod.GET)
   public String showCreate(UserForm userForm, Model model) {
     model.addAttribute("userForm", userForm);
     return "pages/user/create";
   }
-
+  // ユーザー登録 データ保存
   @RequestMapping(path = "user/create", method = RequestMethod.POST)
   public String create(
     @Valid @ModelAttribute UserForm userForm,
@@ -70,6 +70,7 @@ public class UserController {
       return "pages/user/create";
     }
     var user = userForm.toEntity();
+    // ☆
     user = userService.save(user);
     return "redirect:/user/" + user.getId();
   }
