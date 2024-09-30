@@ -29,7 +29,7 @@
           <span class="col-4" th:text="${customer.phoneNumber}"></span>
         </div>
       </div>
-      <td><a class="btn btn-outline-primary" th:href="@{customer/{id}/edit(id=${customer.id},page=${customer.number},size=${customer.size})}">編集</a></td>
+      <td><a class="btn btn-outline-primary" th:href="@{customer/{id}/edit(id=${customer.id},page=${page},size=${size})}">編集</a></td>
 
 
       <h1>顧客配送先詳細</h1>
@@ -47,7 +47,7 @@
           <tr th:each="data : ${customer.customerDestinations}">
             <td th:text="${data.name}"></td>
 
-            <td><a class="btn btn-outline-primary" th:href="@{/data.name/{id}(id=${data.id},page=${data.number},size=${data.size})}">詳細へ</a></td>
+            <td><a class="btn btn-outline-primary" th:href="@{/data.name/{id}(id=${data.id},page=${page},size=${size})}">詳細へ</a></td>
           </tr>
         </tbody>
       </table>
