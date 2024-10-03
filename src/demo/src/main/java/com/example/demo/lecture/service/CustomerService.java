@@ -1,7 +1,6 @@
 package com.example.demo.lecture.service;
 
 import com.example.demo.lecture.entity.CustomerEntity;
-import com.example.demo.lecture.entity.CustomerEntity;
 
 import org.springframework.data.crossstore.ChangeSetPersister.NotFoundException;
 import org.springframework.data.domain.Page;

@@ -1,4 +1,4 @@
-package com.example.demo.lecture.web.customers;
+package com.example.demo.lecture.web.customer;
 
 import com.example.demo.lecture.entity.CustomerEntity;
 import com.example.demo.lecture.entity.UserEntity;
